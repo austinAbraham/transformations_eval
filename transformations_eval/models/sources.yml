@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  # Development sources (using seed files)
+  - name: reporting
+    schema: "{{ target.schema }}"
+    tables:
+      - name: producthistory
+        identifier: reporting_producthistory
+      - name: leads
+        identifier: reporting_leads
+  
+  - name: analytics_corvette
+    schema: "{{ target.schema }}"
+    tables:
+      - name: marketplace_trading_rpls_combined
+        identifier: analytics_corvette_marketplace_trading_rpls
+
+  # Production sources (commented out for later use)
+  # - name: reporting
+  #   database: your_production_database
+  #   schema: reporting
+  #   tables:
+  #     - name: producthistory
+  #     - name: leads
+  
+  # - name: analytics_corvette
+  #   database: your_production_database
+  #   schema: analytics_corvette
+  #   tables:
+  #     - name: marketplace_trading_rpls_combined
