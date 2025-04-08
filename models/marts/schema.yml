@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: mart_marketplace__customer_kpis
+    description: "Customer-level marketplace KPIs including searches, leads, and revenue"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - customer_id
+            - report_date
+    columns:
+      - name: report_date
+        description: "Date for which the KPIs are reported"
+        tests:
+          - not_null
+      - name: customer_id
+        description: "Unique identifier for the customer"
+        tests:
+          - not_null
+      - name: marketplace_searches
+        description: "Total number of marketplace searches by the customer"
+        tests:
+          - not_null
+      - name: marketplace_leads
+        description: "Total number of marketplace leads (zero-eligibility + regular)"
+      - name: marketplace_revenue
+        description: "Total revenue generated from marketplace leads"
+      - name: marketplace_leads_regular
+        description: "Number of regular marketplace leads"
+      - name: marketplace_revenue_regular
+        description: "Revenue from regular marketplace leads"
+      - name: marketplace_leads_zero_elig
+        description: "Number of zero eligibility marketplace leads"
+      - name: marketplace_revenue_zero_elig
+        description: "Revenue from zero eligibility marketplace leads"
+      - name: marketplace_searches_car_finance
+        description: "Number of car finance searches"
+      - name: marketplace_searches_car_re_finance
+        description: "Number of car refinance searches"
+      - name: marketplace_searches_creditcard
+        description: "Number of credit card searches"
+      - name: marketplace_searches_loan
+        description: "Number of loan searches"
+      # Additional metrics can be documented similarly

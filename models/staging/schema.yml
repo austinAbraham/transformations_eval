@@ -1,0 +1,81 @@
+
+version: 2
+
+models:
+  - name: stg_reporting__product_history
+    description: "Standardized product history data with clean column naming and proper data types"
+    columns:
+      - name: customer_id
+        description: "Unique identifier for the customer (from APPLICANTID)"
+        tests:
+          - not_null
+      - name: report_date
+        description: "Date of the product search"
+        tests:
+          - not_null
+      - name: experian_resultset_id
+        description: "Unique identifier for the Experian search result"
+        tests:
+          - not_null
+          - unique
+      - name: requested_product
+        description: "Type of financial product requested (creditcard, loan, carfinance, or carrefinance)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['creditcard', 'loan', 'carfinance', 'carrefinance']
+
+  - name: stg_reporting__leads
+    description: "Standardized leads data with classification by lead type"
+    columns:
+      - name: customer_id
+        description: "Unique identifier for the customer"
+        tests:
+          - not_null
+      - name: report_date
+        description: "Date the lead was created"
+        tests:
+          - not_null
+      - name: lead_id
+        description: "Unique identifier for the lead"
+        tests:
+          - not_null
+          - unique
+      - name: experian_resultset_id
+        description: "Experian search result ID that generated this lead"
+        tests:
+          - not_null
+      - name: lead_type
+        description: "Classification of lead: 0 = zero eligibility lead, 1 = regular lead"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1]
+      - name: rpl_id
+        description: "Composite ID for joining with RPL forecast data"
+        tests:
+          - not_null
+      - name: product_provider
+        description: "Company providing the financial product"
+      - name: product_id
+        description: "Unique identifier for the product"
+      - name: product_category
+        description: "Category of the product (Card, Loan, Car)"
+      - name: product_description
+        description: "Detailed description of the product"
+
+  - name: stg_analytics_corvette__marketplace_trading_rpls
+    description: "Standardized RPL (Revenue Per Lead) forecast data"
+    columns:
+      - name: rpl_id
+        description: "Composite ID that joins with the leads data"
+        tests:
+          - not_null
+      - name: month
+        description: "Month for which the RPL forecast applies"
+        tests:
+          - not_null
+      - name: rpl_forecast
+        description: "Forecasted revenue per lead amount"
+        tests:
+          - not_null
