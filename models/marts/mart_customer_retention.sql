@@ -14,6 +14,28 @@ WITH customer_history AS (
     FROM {{ ref('stg_customer__subscriptions') }}
 ),
 
+-- Add lag information in a separate CTE
+customer_history_with_lag AS (
+    SELECT 
+        customer_id,
+        subscription_id,
+        plan_type,
+        plan_tier,
+        start_date,
+        end_date,
+        status,
+        monthly_fee,
+        is_churned,
+        LAG(is_churned) OVER (PARTITION BY customer_id ORDER BY start_date) AS prev_is_churned,
+        LAG(end_date) OVER (PARTITION BY customer_id ORDER BY start_date) AS prev_end_date,
+        CASE 
+            WHEN is_churned AND LAG(is_churned) OVER (PARTITION BY customer_id ORDER BY start_date) = TRUE
+            THEN DATEDIFF(day, LAG(end_date) OVER (PARTITION BY customer_id ORDER BY start_date), end_date)
+            ELSE NULL
+        END AS days_between_churns
+    FROM customer_history
+),
+
 -- Get the most recent subscription for each customer
 latest_subscription AS (
     SELECT 
@@ -54,18 +76,13 @@ customer_activity AS (
 -- Calculate churn metrics
 churn_data AS (
     SELECT
-        ch.customer_id,
-        COUNT(DISTINCT ch.subscription_id) AS total_subscriptions,
-        SUM(CASE WHEN ch.is_churned THEN 1 ELSE 0 END) AS number_of_churns,
-        MAX(CASE WHEN ch.is_churned THEN ch.end_date ELSE NULL END) AS last_churn_date,
-        -- Look at time between churns if multiple churns
-        AVG(CASE 
-                WHEN ch.is_churned AND LAG(ch.is_churned) OVER (PARTITION BY ch.customer_id ORDER BY ch.start_date) = TRUE 
-                THEN DATEDIFF(day, LAG(ch.end_date) OVER (PARTITION BY ch.customer_id ORDER BY ch.start_date), ch.end_date)
-                ELSE NULL
-            END) AS avg_days_between_churns
-    FROM customer_history ch
-    GROUP BY ch.customer_id
+        customer_id,
+        COUNT(DISTINCT subscription_id) AS total_subscriptions,
+        SUM(CASE WHEN is_churned THEN 1 ELSE 0 END) AS number_of_churns,
+        MAX(CASE WHEN is_churned THEN end_date ELSE NULL END) AS last_churn_date,
+        AVG(days_between_churns) AS avg_days_between_churns
+    FROM customer_history_with_lag
+    GROUP BY customer_id
 )
 
 SELECT
