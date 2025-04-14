@@ -1,0 +1,41 @@
+CUSTOMER_ID,SUBSCRIPTION_ID,PLAN_TYPE,PLAN_TIER,START_DATE,END_DATE,STATUS,MONTHLY_FEE,PAYMENT_METHOD
+1001,SUB-10001,Premium,Gold,2025-01-01,2099-12-31,Active,19.99,Credit Card
+1002,SUB-10002,Basic,Silver,2025-01-05,2025-07-05,Active,9.99,Direct Debit
+1003,SUB-10003,Premium,Platinum,2025-01-10,2099-12-31,Active,29.99,Credit Card
+1004,SUB-10004,Basic,Bronze,2025-01-15,2025-03-15,Canceled,4.99,PayPal
+1005,SUB-10005,Premium,Gold,2025-01-20,2025-04-20,Canceled,19.99,Credit Card
+1006,SUB-10006,Basic,Silver,2025-01-25,2099-12-31,Active,9.99,Direct Debit
+1007,SUB-10007,Premium,Gold,2025-02-01,2099-12-31,Active,19.99,PayPal
+1008,SUB-10008,Basic,Bronze,2025-02-05,2025-05-05,Paused,4.99,Credit Card
+1009,SUB-10009,Premium,Platinum,2025-02-10,2099-12-31,Active,29.99,Direct Debit
+1010,SUB-10010,Basic,Silver,2025-02-15,2025-08-15,Active,9.99,PayPal
+1011,SUB-10011,Premium,Gold,2025-02-20,2099-12-31,Active,19.99,Credit Card
+1012,SUB-10012,Basic,Bronze,2025-02-25,2025-05-25,Active,4.99,Direct Debit
+1013,SUB-10013,Premium,Platinum,2025-03-01,2099-12-31,Active,29.99,PayPal
+1014,SUB-10014,Basic,Silver,2025-03-05,2025-06-05,Paused,9.99,Credit Card
+1015,SUB-10015,Premium,Gold,2025-03-10,2099-12-31,Active,19.99,Direct Debit
+1016,SUB-10016,Basic,Bronze,2025-03-15,2025-04-15,Canceled,4.99,PayPal
+1017,SUB-10017,Premium,Gold,2025-03-20,2099-12-31,Active,19.99,Credit Card
+1018,SUB-10018,Basic,Silver,2025-03-25,2025-09-25,Active,9.99,Direct Debit
+1019,SUB-10019,Premium,Platinum,2025-04-01,2099-12-31,Active,29.99,PayPal
+1020,SUB-10020,Basic,Bronze,2025-04-05,2025-07-05,Active,4.99,Credit Card
+1021,SUB-10021,Premium,Gold,2024-08-01,2024-12-01,Canceled,19.99,Credit Card
+1022,SUB-10022,Basic,Silver,2024-08-15,2025-01-15,Canceled,9.99,Direct Debit
+1023,SUB-10023,Premium,Gold,2024-07-01,2024-10-01,Canceled,19.99,PayPal
+1024,SUB-10024,Basic,Silver,2024-07-15,2024-12-15,Canceled,9.99,Credit Card
+1025,SUB-10025,Premium,Platinum,2024-09-01,2024-12-01,Canceled,29.99,Direct Debit
+1026,SUB-10026,Basic,Bronze,2024-09-15,2024-12-15,Canceled,4.99,PayPal
+1027,SUB-10027,Premium,Gold,2024-10-01,2025-01-01,Canceled,19.99,Credit Card
+1028,SUB-10028,Basic,Silver,2024-10-15,2025-01-15,Canceled,9.99,Direct Debit
+1029,SUB-10029,Premium,Platinum,2024-11-01,2025-02-01,Canceled,29.99,PayPal
+1030,SUB-10030,Basic,Bronze,2024-11-15,2025-02-15,Canceled,4.99,Credit Card
+1001,SUB-10031,Premium,Platinum,2024-07-01,2024-12-31,Canceled,29.99,Credit Card
+1003,SUB-10032,Basic,Bronze,2024-08-01,2024-12-31,Canceled,4.99,Direct Debit
+1005,SUB-10033,Premium,Gold,2024-09-01,2024-12-31,Canceled,19.99,PayPal
+1007,SUB-10034,Basic,Silver,2024-10-01,2025-01-31,Canceled,9.99,Credit Card
+1009,SUB-10035,Premium,Platinum,2024-08-10,2025-01-31,Canceled,29.99,Direct Debit
+1011,SUB-10036,Basic,Bronze,2024-07-20,2024-12-31,Canceled,4.99,PayPal
+1013,SUB-10037,Premium,Gold,2024-09-15,2024-12-31,Canceled,19.99,Credit Card
+1015,SUB-10038,Basic,Silver,2024-10-25,2025-01-31,Canceled,9.99,Direct Debit
+1017,SUB-10039,Premium,Platinum,2024-08-05,2024-12-31,Canceled,29.99,PayPal
+1019,SUB-10040,Basic,Bronze,2024-09-30,2025-01-31,Canceled,4.99,Credit Card
