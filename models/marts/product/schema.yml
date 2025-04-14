@@ -1,0 +1,93 @@
+version: 2
+
+models:
+  - name: fct_daily_user_activity
+    description: Daily user activity metrics by platform and event category
+    columns:
+      - name: activity_date
+        description: Date of the activity
+        tests:
+          - not_null
+      - name: platform
+        description: Platform on which the activity occurred
+        tests:
+          - not_null
+          - relationships:
+              to: ref('seed_platform_mapping')
+              field: platform_id
+      - name: event_category
+        description: Category of the event
+        tests:
+          - not_null
+          - relationships:
+              to: ref('seed_event_categories')
+              field: event_category
+      - name: unique_users
+        description: Number of unique users
+        tests:
+          - not_null
+      - name: total_events
+        description: Total number of events
+        tests:
+          - not_null
+      - name: avg_events_per_user
+        description: Average number of events per user
+        tests:
+          - not_null
+    tests:
+      - unique:
+          column_name: "CONCAT(activity_date, platform, event_category)"
+
+  - name: fct_product_usage
+    description: Daily product usage metrics by product family
+    columns:
+      - name: activity_date
+        description: Date of the activity
+        tests:
+          - not_null
+      - name: product_family
+        description: Family group of the product
+        tests:
+          - not_null
+      - name: unique_users
+        description: Number of unique users
+        tests:
+          - not_null
+      - name: total_logins
+        description: Total number of logins
+        tests:
+          - not_null
+      - name: logins_per_user
+        description: Average logins per user
+        tests:
+          - not_null
+    tests:
+      - unique:
+          column_name: "CONCAT(activity_date, product_family)"
+
+  - name: fct_upsell_downsell_analysis
+    description: Analysis of upsell and downsell events
+    columns:
+      - name: event_date
+        description: Date of the event
+        tests:
+          - not_null
+      - name: change_type
+        description: Type of subscription change (upgrade or downgrade)
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['upgrade', 'downgrade', 'other']
+      - name: total_changes
+        description: Total number of subscription changes
+        tests:
+          - not_null
+      - name: avg_days_between_changes
+        description: Average days between subscription changes
+      - name: unique_customers
+        description: Number of unique customers with subscription changes
+        tests:
+          - not_null
+    tests:
+      - unique:
+          column_name: "CONCAT(event_date, change_type)"

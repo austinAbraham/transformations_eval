@@ -1,0 +1,16 @@
+segment_id,segment_name,segment_description,is_active,priority,target_products,marketing_channel,retention_rate,avg_ltv,creation_date
+FREE_USER,Free Tier Users,"Users on free products only",TRUE,Medium,"basic_free,credit_expert_free,identity_free","EMAIL,PUSH",0.35,0.00,2018-01-01
+TRIAL_USER,Trial Users,"Users currently in trial period",TRUE,High,"basic_trial,credit_expert_trial,identity_trial","EMAIL,PUSH,SMS",0.42,0.00,2018-01-01
+NEW_PAID,New Paid Users,"Paid users < 3 months",TRUE,High,"All paid products","EMAIL,PUSH,PHONE",0.78,175.50,2018-01-01
+LOYAL_BASIC,Loyal Basic Users,"Basic paid users > 3 months",TRUE,Medium,"basic_paid,basic_paid_plus","EMAIL,PUSH",0.85,245.75,2018-01-01
+LOYAL_PREMIUM,Loyal Premium Users,"Premium product users > 3 months",TRUE,High,"credit_expert_paid,credit_expert_premium,identity_paid,identity_premium","EMAIL,PUSH,PHONE",0.92,485.30,2018-01-01
+FAMILY_USER,Family Plan Users,"Users on family plans",TRUE,High,"family_bundle_basic,family_bundle_premium,identity_family","EMAIL,PUSH,PHONE",0.89,875.40,2021-05-20
+BUSINESS_USER,Business Users,"Business product users",TRUE,High,"credit_expert_business,business_bundle","EMAIL,PHONE,DIRECT",0.87,1250.00,2021-04-05
+CREDIT_REPAIR,Credit Repair Clients,"Credit repair service clients",TRUE,Very High,"credit_repair_basic,credit_repair_premium","EMAIL,PHONE,DIRECT",0.75,2250.00,2022-08-01
+CHURNED_RECENT,Recently Churned,"Churned in last 30 days",TRUE,High,"All products","EMAIL,PHONE,DIRECT",0.00,0.00,2018-01-01
+CHURNED_WINBACK,Winback Targets,"Churned 30-90 days ago",TRUE,Medium,"All products","EMAIL,DIRECT",0.00,0.00,2018-01-01
+HIGH_RISK_CHURN,Churn Risk,"Active users with high churn risk",TRUE,Very High,"All paid products","EMAIL,PUSH,PHONE",0.45,125.00,2018-06-01
+MARKETPLACE_USER,Marketplace User,"Active marketplace product users",TRUE,High,"All products","EMAIL,PUSH",0.72,325.50,2018-07-01
+MULTI_PRODUCT,Multi-Product Users,"Users with 2+ active products",TRUE,Very High,"All products","EMAIL,PUSH,PHONE",0.95,725.80,2019-01-01
+INACTIVE,Inactive Users,"No login in past 30 days",TRUE,Medium,"All products","EMAIL,PUSH",0.52,115.20,2018-03-01
+HIGH_VALUE,High Value Customers,"Top 10% by revenue",TRUE,Very High,"All premium products","EMAIL,PHONE,DIRECT",0.96,1575.00,2019-01-01

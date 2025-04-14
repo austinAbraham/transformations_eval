@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: fct_daily_revenue
+    description: Daily revenue facts by revenue type and product
+    columns:
+      - name: revenue_date
+        description: Date of the revenue
+        tests:
+          - not_null
+      - name: revenue_type
+        description: Type of revenue (subscription or marketplace)
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['subscription', 'marketplace']
+      - name: product_id
+        description: Unique identifier for the product
+        tests:
+          - not_null
+      - name: product_family
+        description: Family group of the product
+        tests:
+          - not_null
+      - name: customer_count
+        description: Number of unique customers
+        tests:
+          - not_null
+      - name: daily_revenue
+        description: Total revenue for the day
+        tests:
+          - not_null
+    tests:
+      - unique:
+          column_name: "CONCAT(revenue_date, revenue_type, product_id)"
+
+  - name: dim_customer
+    description: Customer dimension with latest attributes and metrics
+    columns:
+      - name: customer_id
+        description: Unique identifier for the customer
+        tests:
+          - not_null
+          - unique
+      - name: customer_age
+        description: Age of the customer
+      - name: customer_age_band
+        description: Age band of the customer
+      - name: customer_is_prospect
+        description: Indicates if the customer is a prospect
+      - name: acquisition_date
+        description: Date when the customer was acquired
+      - name: acquisition_type
+        description: Type of acquisition
+      - name: acquisition_channel
+        description: Channel through which the customer was acquired
+      - name: current_product_id
+        description: Current product ID for active customers
+      - name: current_product_family
+        description: Current product family for active customers
+      - name: first_subscription_date
+        description: Date of the customer's first subscription
+      - name: total_subscriptions
+        description: Total number of subscriptions
+        tests:
+          - not_null
+      - name: current_monthly_revenue
+        description: Current monthly revenue from the customer
+        tests:
+          - not_null

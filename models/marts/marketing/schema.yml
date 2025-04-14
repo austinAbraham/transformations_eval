@@ -1,0 +1,77 @@
+version: 2
+
+models:
+  - name: fct_acquisition_performance
+    description: Daily acquisition performance metrics by channel
+    columns:
+      - name: acquisition_date
+        description: Date of acquisition
+        tests:
+          - not_null
+      - name: acquisition_channel
+        description: Acquisition channel
+        tests:
+          - not_null
+      - name: acquisition_type
+        description: Type of acquisition
+        tests:
+          - not_null
+          - relationships:
+              to: ref('seed_acquisition_channels')
+              field: acquisition_type
+      - name: new_customers
+        description: Number of new customers acquired
+        tests:
+          - not_null
+      - name: converted_customers
+        description: Number of customers converted from prospects
+        tests:
+          - not_null
+      - name: avg_birth_year
+        description: Average birth year of acquired customers
+      - name: most_common_age_band
+        description: Most common age band among acquired customers
+      - name: conversion_rate
+        description: Conversion rate of prospects to customers
+        tests:
+          - not_null
+    tests:
+      - unique:
+          column_name: "CONCAT(acquisition_date, acquisition_channel, acquisition_type)"
+
+  - name: fct_customer_ltv
+    description: Customer lifetime value metrics
+    columns:
+      - name: customer_id
+        description: Unique identifier for the customer
+        tests:
+          - not_null
+          - unique
+      - name: acquisition_channel
+        description: Channel through which the customer was acquired
+      - name: acquisition_type
+        description: Type of acquisition
+      - name: acquisition_month
+        description: Month of acquisition
+        tests:
+          - not_null
+      - name: total_subscription_revenue
+        description: Total revenue from subscriptions
+        tests:
+          - not_null
+      - name: total_marketplace_revenue
+        description: Total revenue from marketplace leads
+        tests:
+          - not_null
+      - name: total_revenue
+        description: Total combined revenue
+        tests:
+          - not_null
+      - name: customer_lifetime_months
+        description: Customer lifetime in months
+        tests:
+          - not_null
+      - name: monthly_ltv
+        description: Average monthly lifetime value
+        tests:
+          - not_null

@@ -16,6 +16,97 @@ sources:
       - name: marketplace_trading_rpls_combined
         identifier: analytics_corvette_marketplace_trading_rpls
 
+
+  - name: raw
+    database: "{{ target.schema }}"
+    schema: raw_data
+    description: Raw data loaded from source systems
+    tables:
+      - name: events
+        description: Raw events data from all platforms
+        columns:
+          - name: event_guid
+            description: Unique identifier for each event
+            tests:
+              - not_null
+              - unique
+          - name: event_type
+            description: Type of event
+          - name: event_category
+            description: Category of the event
+          - name: customer_id
+            description: Unique identifier for the customer
+          - name: event_datetime
+            description: Date and time when the event occurred
+          - name: platform
+            description: Platform on which the event occurred
+          - name: revenue
+            description: Revenue associated with the event (if applicable)
+
+      - name: customers
+        description: Raw customer data
+        columns:
+          - name: customer_id
+            description: Unique identifier for the customer
+            tests:
+              - not_null
+              - unique
+          - name: customer_age
+            description: Age of the customer
+          - name: customer_age_band
+            description: Age band of the customer
+          - name: customer_is_prospect
+            description: Indicates if the customer is a prospect
+          - name: date_created
+            description: Date the customer record was created
+          - name: current_flag
+            description: Indicates if record is current
+
+      - name: products
+        description: Product catalog information
+        columns:
+          - name: product_id
+            description: Unique identifier for the product
+            tests:
+              - not_null
+              - unique
+          - name: product_name
+            description: Name of the product
+          - name: product_family
+            description: Family group of the product
+          - name: product_type
+            description: Type of product
+          - name: price
+            description: Product price
+          - name: is_active
+            description: Indicates if the product is active
+        
+      - name: subscriptions
+        description: Customer subscription data
+        columns:
+          - name: subscription_id
+            description: Unique identifier for the subscription
+            tests:
+              - not_null
+              - unique
+          - name: customer_id
+            description: Unique identifier for the customer
+          - name: product_id
+            description: Unique identifier for the product
+          - name: start_date
+            description: Start date of the subscription
+          - name: end_date
+            description: End date of the subscription (if applicable)
+          - name: status
+            description: Status of the subscription
+          - name: payment_method
+            description: Payment method for the subscription
+          - name: billing_frequency
+            description: Billing frequency
+          - name: monthly_amount
+            description: Monthly subscription amount
+
+
   # Production sources (commented out for later use)
   # - name: reporting
   #   database: your_production_database

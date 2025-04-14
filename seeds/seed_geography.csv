@@ -1,0 +1,31 @@
+geo_id,country,region,state,state_code,city,postal_code,timezone,is_active,population_density,market_tier
+US-NY-NYC,United States,Northeast,New York,NY,New York City,10001,America/New_York,TRUE,High,Tier 1
+US-CA-LAX,United States,West,California,CA,Los Angeles,90001,America/Los_Angeles,TRUE,High,Tier 1
+US-IL-CHI,United States,Midwest,Illinois,IL,Chicago,60601,America/Chicago,TRUE,High,Tier 1
+US-TX-HOU,United States,South,Texas,TX,Houston,77001,America/Chicago,TRUE,Medium,Tier 1
+US-TX-DAL,United States,South,Texas,TX,Dallas,75201,America/Chicago,TRUE,Medium,Tier 1
+US-PA-PHL,United States,Northeast,Pennsylvania,PA,Philadelphia,19101,America/New_York,TRUE,High,Tier 1
+US-AZ-PHX,United States,West,Arizona,AZ,Phoenix,85001,America/Phoenix,TRUE,Medium,Tier 2
+US-CA-SAN,United States,West,California,CA,San Diego,92101,America/Los_Angeles,TRUE,Medium,Tier 2
+US-TX-SAN,United States,South,Texas,TX,San Antonio,78201,America/Chicago,TRUE,Medium,Tier 2
+US-CA-SJC,United States,West,California,CA,San Jose,95101,America/Los_Angeles,TRUE,High,Tier 2
+US-FL-MIA,United States,South,Florida,FL,Miami,33101,America/New_York,TRUE,High,Tier 2
+US-GA-ATL,United States,South,Georgia,GA,Atlanta,30301,America/New_York,TRUE,Medium,Tier 2
+US-WA-SEA,United States,West,Washington,WA,Seattle,98101,America/Los_Angeles,TRUE,Medium,Tier 2
+US-CO-DEN,United States,West,Colorado,CO,Denver,80201,America/Denver,TRUE,Medium,Tier 2
+US-MI-DET,United States,Midwest,Michigan,MI,Detroit,48201,America/Detroit,TRUE,Medium,Tier 2
+US-MA-BOS,United States,Northeast,Massachusetts,MA,Boston,02101,America/New_York,TRUE,High,Tier 2
+US-TN-NSH,United States,South,Tennessee,TN,Nashville,37201,America/Chicago,TRUE,Medium,Tier 3
+US-OR-PDX,United States,West,Oregon,OR,Portland,97201,America/Los_Angeles,TRUE,Medium,Tier 3
+US-NV-LAS,United States,West,Nevada,NV,Las Vegas,89101,America/Los_Angeles,TRUE,Medium,Tier 3
+US-NC-CLT,United States,South,North Carolina,NC,Charlotte,28201,America/New_York,TRUE,Medium,Tier 3
+US-OH-CLE,United States,Midwest,Ohio,OH,Cleveland,44101,America/New_York,TRUE,Medium,Tier 3
+US-FL-ORL,United States,South,Florida,FL,Orlando,32801,America/New_York,TRUE,Medium,Tier 3
+US-MN-MSP,United States,Midwest,Minnesota,MN,Minneapolis,55401,America/Chicago,TRUE,Medium,Tier 3
+US-MO-KC,United States,Midwest,Missouri,MO,Kansas City,64101,America/Chicago,TRUE,Medium,Tier 3
+US-UT-SLC,United States,West,Utah,UT,Salt Lake City,84101,America/Denver,TRUE,Medium,Tier 3
+US-RURAL-NE,United States,Midwest,Multiple,--,Rural Midwest,00000,America/Chicago,TRUE,Low,Tier 4
+US-RURAL-S,United States,South,Multiple,--,Rural South,00000,America/Chicago,TRUE,Low,Tier 4
+US-RURAL-W,United States,West,Multiple,--,Rural West,00000,America/Los_Angeles,TRUE,Low,Tier 4
+US-RURAL-NE,United States,Northeast,Multiple,--,Rural Northeast,00000,America/New_York,TRUE,Low,Tier 4
+CA-ON-TOR,Canada,Ontario,Ontario,ON,Toronto,M5H,America/Toronto,TRUE,High,Tier 1

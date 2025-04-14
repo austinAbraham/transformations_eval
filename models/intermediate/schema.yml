@@ -66,3 +66,89 @@ models:
         description: "Composite ID used for joining with RPL data (NULL if no lead)"
       - name: revenue
         description: "Forecasted revenue for this lead (0 if no lead or no RPL data)"
+
+  - name: int_customer_product_history
+    description: Customer product subscription history with sequence numbers
+    columns:
+      - name: customer_id
+        description: Unique identifier for the customer
+        tests:
+          - not_null
+      - name: customer_age
+        description: Age of the customer
+      - name: customer_age_band
+        description: Age band of the customer
+      - name: product_id
+        description: Unique identifier for the product
+      - name: product_family
+        description: Family group of the product
+      - name: product_type
+        description: Type of product
+      - name: start_date
+        description: Start date of the subscription
+      - name: end_date
+        description: End date of the subscription
+      - name: status
+        description: Status of the subscription
+      - name: monthly_amount
+        description: Monthly subscription amount
+      - name: subscription_sequence
+        description: Sequence number of subscriptions for the customer
+        tests:
+          - not_null
+
+  - name: int_customer_events_daily
+    description: Daily aggregated customer events
+    columns:
+      - name: customer_id
+        description: Unique identifier for the customer
+        tests:
+          - not_null
+      - name: event_date
+        description: Date of the event
+        tests:
+          - not_null
+      - name: event_category
+        description: Category of the event
+        tests:
+          - not_null
+      - name: event_type
+        description: Type of event
+        tests:
+          - not_null
+      - name: platform
+        description: Platform on which the event occurred
+      - name: event_count
+        description: Number of events
+        tests:
+          - not_null
+      - name: total_revenue
+        description: Total revenue from events
+
+  - name: int_customer_acquisition_source
+    description: First acquisition event for each customer
+    columns:
+      - name: customer_id
+        description: Unique identifier for the customer
+        tests:
+          - not_null
+          - unique
+      - name: acquisition_date
+        description: Date of acquisition
+        tests:
+          - not_null
+      - name: acquisition_type
+        description: Type of acquisition event
+        tests:
+          - not_null
+          - relationships:
+              to: ref('seed_acquisition_channels')
+              field: acquisition_type
+      - name: acquisition_channel
+        description: Channel through which the customer was acquired
+        tests:
+          - not_null
+      - name: customer_age
+        description: Age of the customer at acquisition
+      - name: customer_age_band
+        description: Age band of the customer at acquisition
