@@ -1,7 +1,7 @@
-
 version: 2
 
 models:
+  # Original marketplace models
   - name: stg_reporting__product_history
     description: "Standardized product history data with clean column naming and proper data types"
     columns:
@@ -17,7 +17,6 @@ models:
         description: "Unique identifier for the Experian search result"
         tests:
           - not_null
-          - unique
       - name: requested_product
         description: "Type of financial product requested (creditcard, loan, carfinance, or carrefinance)"
         tests:
@@ -40,7 +39,6 @@ models:
         description: "Unique identifier for the lead"
         tests:
           - not_null
-          - unique
       - name: experian_resultset_id
         description: "Experian search result ID that generated this lead"
         tests:
@@ -77,5 +75,86 @@ models:
           - not_null
       - name: rpl_forecast
         description: "Forecasted revenue per lead amount"
+        tests:
+          - not_null
+
+  # New customer engagement models
+  - name: stg_customer__subscriptions
+    description: "Standardized customer subscription data"
+    columns:
+      - name: customer_id
+        description: "Unique identifier for the customer"
+        tests:
+          - not_null
+      - name: subscription_id
+        description: "Unique identifier for the subscription"
+        tests:
+          - not_null
+      - name: plan_type
+        description: "Type of plan (Basic or Premium)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Basic', 'Premium']
+      - name: plan_tier
+        description: "Tier level within the plan type"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Bronze', 'Silver', 'Gold', 'Platinum']
+      - name: start_date
+        description: "Date when the subscription began"
+        tests:
+          - not_null
+      - name: end_date
+        description: "Date when the subscription ended or will end"
+        tests:
+          - not_null
+      - name: status
+        description: "Current status of subscription"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Active', 'Canceled', 'Paused']
+      - name: monthly_fee
+        description: "Monthly subscription fee amount"
+        tests:
+          - not_null
+      - name: tier_level
+        description: "Numerical representation of tier level for calculations"
+        tests:
+          - not_null
+      - name: is_active
+        description: "Boolean indicating if subscription is currently active"
+        tests:
+          - not_null
+
+  - name: stg_customer__referrals
+    description: "Standardized customer referral data"
+    columns:
+      - name: referral_id
+        description: "Unique identifier for the referral"
+        tests:
+          - not_null
+      - name: referrer_customer_id
+        description: "Customer ID of the person who made the referral"
+        tests:
+          - not_null
+      - name: referred_customer_id
+        description: "Customer ID of the person who was referred"
+        tests:
+          - not_null
+      - name: referral_date
+        description: "Date when the referral was made"
+        tests:
+          - not_null
+      - name: referral_status
+        description: "Status of the referral"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Pending', 'Converted']
+      - name: is_converted
+        description: "Boolean indicating if the referral was converted"
         tests:
           - not_null

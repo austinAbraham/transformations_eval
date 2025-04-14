@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  # Development sources (using seed files)
+  # Original sources for marketplace models
   - name: reporting
     schema: "{{ target.schema }}"
     tables:
@@ -15,6 +15,50 @@ sources:
     tables:
       - name: marketplace_trading_rpls_combined
         identifier: analytics_corvette_marketplace_trading_rpls
+
+  # New sources for customer engagement models
+  - name: customer
+    schema: "{{ target.schema }}"
+    tables:
+      - name: subscriptions
+        identifier: customer_subscriptions
+        description: "Customer subscription data including plan type, tier, and status"
+        columns:
+          - name: CUSTOMER_ID
+            description: "Unique identifier for the customer"
+          - name: SUBSCRIPTION_ID
+            description: "Unique identifier for the subscription"
+          - name: PLAN_TYPE
+            description: "Type of plan (Basic or Premium)"
+          - name: PLAN_TIER
+            description: "Tier level within the plan type (Bronze, Silver, Gold, Platinum)"
+          - name: START_DATE
+            description: "Date when the subscription began"
+          - name: END_DATE
+            description: "Date when the subscription ended or will end (9999-12-31 for ongoing subscriptions)"
+          - name: STATUS
+            description: "Current status of subscription (Active, Canceled, Paused)"
+          - name: MONTHLY_FEE
+            description: "Monthly subscription fee amount"
+          - name: PAYMENT_METHOD
+            description: "Method of payment for the subscription"
+      
+      - name: referrals
+        identifier: customer_referrals
+        description: "Customer referral data tracking who referred whom and associated bonuses"
+        columns:
+          - name: REFERRAL_ID
+            description: "Unique identifier for the referral"
+          - name: REFERRER_CUSTOMER_ID
+            description: "Customer ID of the person who made the referral"
+          - name: REFERRED_CUSTOMER_ID
+            description: "Customer ID of the person who was referred"
+          - name: REFERRAL_DATE
+            description: "Date when the referral was made"
+          - name: REFERRAL_STATUS
+            description: "Status of the referral (Pending, Converted)"
+          - name: BONUS_AMOUNT
+            description: "Bonus amount paid or to be paid for the referral"
 
   # Production sources (commented out for later use)
   # - name: reporting

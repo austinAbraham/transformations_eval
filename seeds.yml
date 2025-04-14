@@ -1,0 +1,59 @@
+version: 2
+
+seeds:
+  transformations_eval:
+    +truncate: true  # To prevent duplicate data
+    reporting_producthistory:
+      +quote_columns: false
+      config:
+        column_types:
+          APPLICANTID: int
+          CREATEDT: timestamp
+          EXPERIANRESULTSETID: string
+          REQUESTEDPRODUCT: string
+
+    reporting_leads:
+      +quote_columns: false
+      config:
+        column_types:
+          APPLICANTID: int
+          CREATEDT: timestamp
+          LEADID: string
+          EXPERIANRESULTSETID: string
+          PRODUCTPROVIDER: string
+          PRODUCTID: string
+          PRODUCTCATEGORY: string
+          PRODUCTDESCRIPTION: string
+
+    analytics_corvette_marketplace_trading_rpls:
+      +quote_columns: false
+      config:
+        column_types:
+          ID: string
+          MONTH_: date
+          RPL_FORECAST: float
+          
+    customer_subscriptions:
+      +quote_columns: false
+      config:
+        column_types:
+          CUSTOMER_ID: int
+          SUBSCRIPTION_ID: string
+          PLAN_TYPE: string
+          PLAN_TIER: string
+          START_DATE: date
+          END_DATE: date
+          STATUS: string
+          MONTHLY_FEE: float
+          PAYMENT_METHOD: string
+          
+    customer_referrals:
+      +quote_columns: false
+      config:
+        column_types:
+          REFERRAL_ID: string
+          REFERRER_CUSTOMER_ID: int
+          REFERRED_CUSTOMER_ID: int
+          REFERRAL_DATE: date
+          REFERRAL_STATUS: string
+          BONUS_AMOUNT: float
