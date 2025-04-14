@@ -42,4 +42,36 @@ SELECT
     COALESCE(rm.customer_id, rfm.customer_id) AS customer_id,
     
     -- Referrer metrics
-    COALESCE(rm.total_referrals_made, 0) AS total
+    COALESCE(rm.total_referrals_made, 0) AS total_referrals_made,
+    COALESCE(rm.successful_referrals, 0) AS successful_referrals,
+    COALESCE(rm.total_referral_bonus_earned, 0) AS total_referral_bonus_earned,
+    rm.first_referral_date,
+    rm.last_referral_date,
+    COALESCE(rm.referrals_last_3_months, 0) AS referrals_last_3_months,
+    
+    -- Referred metrics
+    CASE WHEN rfm.customer_id IS NOT NULL THEN TRUE ELSE FALSE END AS is_referred_customer,
+    rfm.date_referred,
+    rfm.referred_by_customer_id,
+    
+    -- Derived metrics
+    CASE 
+        WHEN COALESCE(rm.successful_referrals, 0) >= 5 THEN 'Champion'
+        WHEN COALESCE(rm.successful_referrals, 0) >= 3 THEN 'Advocate'
+        WHEN COALESCE(rm.successful_referrals, 0) >= 1 THEN 'Referrer'
+        ELSE 'Non-referrer'
+    END AS referrer_segment,
+    
+    CASE 
+        WHEN COALESCE(rm.referrals_last_3_months, 0) > 0 THEN TRUE 
+        ELSE FALSE 
+    END AS is_active_referrer,
+    
+    CASE 
+        WHEN COALESCE(rm.total_referrals_made, 0) > 0 THEN
+            ROUND(COALESCE(rm.successful_referrals, 0) * 100.0 / NULLIF(rm.total_referrals_made, 0), 2)
+        ELSE 0
+    END AS referral_conversion_rate
+FROM referrer_metrics AS rm
+FULL OUTER JOIN referred_metrics AS rfm
+    ON rm.customer_id = rfm.customer_id

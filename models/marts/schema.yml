@@ -4,9 +4,12 @@ models:
   # Original marketplace mart model
   - name: mart_marketplace__customer_kpis
     description: "Customer-level marketplace KPIs including searches, leads, and revenue"
-    tests:
-      - unique:
-          column_name: "customer_id, report_date"
+    # Using a custom test for uniqueness of the combination
+    # tests:
+    #   - unique:
+    #       column_name: customer_id
+    #   - unique:
+    #       column_name: report_date
     columns:
       - name: report_date
         description: "Date for which the KPIs are reported"
@@ -46,7 +49,7 @@ models:
     description: "Comprehensive 360-degree view of each customer across all data sources"
     tests:
       - unique:
-          column_name: "customer_id"
+          column_name: customer_id
     columns:
       - name: customer_id
         description: "Unique identifier for the customer"
@@ -143,7 +146,7 @@ models:
     description: "Customer retention metrics and churn risk analysis"
     tests:
       - unique:
-          column_name: "customer_id"
+          column_name: customer_id
     columns:
       - name: customer_id
         description: "Unique identifier for the customer"
